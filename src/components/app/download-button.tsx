@@ -47,7 +47,7 @@ export function DownloadButton({ link }: { link: string }) {
     <Button
       onClick={handleDownload}
       disabled={loading}
-      className="h-10 w-28 rounded-full shadow-sm transition-all hover:shadow-md hover:scale-105 bg-primary/90 hover:bg-primary text-primary-foreground"
+      className="h-10 w-28 rounded-md shadow-sm transition-all hover:shadow-md hover:scale-105"
       aria-label="Download paper"
     >
       {loading ? (
