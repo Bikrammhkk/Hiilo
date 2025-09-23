@@ -9,10 +9,6 @@ export default function Home() {
     <div className="flex min-h-screen flex-col bg-background">
       <AppHeader />
       <main className="container mx-auto flex-grow px-4 py-8 sm:px-6 lg:px-8">
-        <div className='mb-8'>
-            <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">Explore Vacancies</h2>
-            <p className="mt-2 text-lg text-muted-foreground">Find previous year papers and notes.</p>
-        </div>
         <PaperCatalogue />
         <Card className="mt-8 border-dashed bg-transparent shadow-none">
           <CardHeader>
