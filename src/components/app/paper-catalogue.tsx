@@ -2,7 +2,6 @@
 'use client';
 
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
-import { getDatabase, ref, onValue } from 'firebase/database';
 import type { Paper } from '@/types';
 import { database } from '@/lib/firebase';
 import { Card, CardContent } from '@/components/ui/card';
@@ -17,6 +16,7 @@ import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
 import { PaperItem } from './paper-item';
 import { FabRefresh } from './fab-refresh';
+import { onValue, ref } from 'firebase/database';
 
 const ALL_FILTER = 'all';
 
@@ -101,7 +101,7 @@ export function PaperCatalogue() {
           <div className="space-y-4">
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <Select value={semesterFilter} onValueChange={setSemesterFilter}>
-                <SelectTrigger className="h-12 text-base shadow-sm bg-primary text-primary-foreground">
+                <SelectTrigger className="h-12 text-base shadow-sm bg-accent text-accent-foreground">
                   <SelectValue placeholder="All Semesters" />
                 </SelectTrigger>
                 <SelectContent>
@@ -114,7 +114,7 @@ export function PaperCatalogue() {
                 </SelectContent>
               </Select>
               <Select value={subjectFilter} onValueChange={setSubjectFilter}>
-                <SelectTrigger className="h-12 text-base shadow-sm bg-primary text-primary-foreground">
+                <SelectTrigger className="h-12 text-base shadow-sm bg-accent text-accent-foreground">
                   <SelectValue placeholder="All Subjects" />
                 </SelectTrigger>
                 <SelectContent>
