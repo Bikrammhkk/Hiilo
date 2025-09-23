@@ -24,8 +24,8 @@ export function PaperCatalogue() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
-  const [semesterFilter, setSemesterFilter] = useState('');
-  const [subjectFilter, setSubjectFilter] = useState('');
+  const [semesterFilter, setSemesterFilter] = useState('all');
+  const [subjectFilter, setSubjectFilter] = useState('all');
 
   const fetchPapers = useCallback(() => {
     setLoading(true);
@@ -81,8 +81,8 @@ export function PaperCatalogue() {
     return papers.filter((p) => {
       const search = searchTerm.toLowerCase();
       return (
-        (semesterFilter === '' || String(p.semester) === semesterFilter) &&
-        (subjectFilter === '' || p.subject === subjectFilter) &&
+        (semesterFilter === 'all' || String(p.semester) === semesterFilter) &&
+        (subjectFilter === 'all' || p.subject === subjectFilter) &&
         (searchTerm === '' ||
           p.title?.toLowerCase().includes(search) ||
           p.subject?.toLowerCase().includes(search) ||
@@ -93,8 +93,8 @@ export function PaperCatalogue() {
 
   const handleRefresh = useCallback(() => {
     setSearchTerm('');
-    setSemesterFilter('');
-    setSubjectFilter('');
+    setSemesterFilter('all');
+    setSubjectFilter('all');
     if (papers.length === 0) {
       fetchPapers();
     }
@@ -121,7 +121,7 @@ export function PaperCatalogue() {
                   <SelectValue placeholder="All Semesters" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All Semesters</SelectItem>
+                  <SelectItem value="all">All Semesters</SelectItem>
                   {semesters.map((s) => (
                     <SelectItem key={s} value={s}>
                       Semester {s}
@@ -134,7 +134,7 @@ export function PaperCatalogue() {
                   <SelectValue placeholder="All Subjects" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All Subjects</SelectItem>
+                  <SelectItem value="all">All Subjects</SelectItem>
                   {subjects.map((s) => (
                     <SelectItem key={s} value={s}>
                       {s}
