@@ -43,7 +43,7 @@ export default function RootLayout({
       </head>
       <body className="font-body antialiased">
         <SidebarProvider>
-          <Sidebar side="right">
+          <Sidebar side="left">
             <SidebarHeader>
               <h2 className="text-lg font-semibold">Contact Me</h2>
             </SidebarHeader>
@@ -89,6 +89,7 @@ export default function RootLayout({
             </SidebarFooter>
           </Sidebar>
           <SidebarInset>
+            <AppHeader />
             {children}
             <Toaster />
           </SidebarInset>
