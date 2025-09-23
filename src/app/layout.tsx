@@ -3,8 +3,8 @@ import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
-  title: 'PaperCat',
-  description: 'Previous Year Question Papers',
+  title: 'Syllabus',
+  description: 'Syllabus',
 };
 
 export default function RootLayout({
