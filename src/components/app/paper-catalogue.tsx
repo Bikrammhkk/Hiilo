@@ -17,14 +17,15 @@ import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
 import { PaperItem } from './paper-item';
 import { FabRefresh } from './fab-refresh';
-import { Loader2 } from 'lucide-react';
+
+const ALL_FILTER = 'all';
 
 export function PaperCatalogue() {
   const [papers, setPapers] = useState<Paper[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [semesterFilter, setSemesterFilter] = useState('all');
-  const [subjectFilter, setSubjectFilter] = useState('all');
+  const [semesterFilter, setSemesterFilter] = useState(ALL_FILTER);
+  const [subjectFilter, setSubjectFilter] = useState(ALL_FILTER);
 
   const fetchPapers = useCallback(() => {
     setLoading(true);
@@ -79,15 +80,15 @@ export function PaperCatalogue() {
   const filteredPapers = useMemo(() => {
     return papers.filter((p) => {
       return (
-        (semesterFilter === 'all' || String(p.semester) === semesterFilter) &&
-        (subjectFilter === 'all' || p.subject === subjectFilter)
+        (semesterFilter === ALL_FILTER || String(p.semester) === semesterFilter) &&
+        (subjectFilter === ALL_FILTER || p.subject === subjectFilter)
       );
     });
   }, [papers, semesterFilter, subjectFilter]);
 
   const handleRefresh = useCallback(() => {
-    setSemesterFilter('all');
-    setSubjectFilter('all');
+    setSemesterFilter(ALL_FILTER);
+    setSubjectFilter(ALL_FILTER);
     if (papers.length === 0) {
       fetchPapers();
     }
@@ -95,16 +96,16 @@ export function PaperCatalogue() {
 
   return (
     <>
-      <Card>
+      <Card className="overflow-hidden shadow-lg">
         <CardContent className="p-4 sm:p-6">
           <div className="space-y-4">
-            <div className="flex flex-col gap-4 sm:flex-row">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <Select value={semesterFilter} onValueChange={setSemesterFilter}>
-                <SelectTrigger className="h-12 text-base">
+                <SelectTrigger className="h-12 text-base shadow-sm">
                   <SelectValue placeholder="All Semesters" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">All Semesters</SelectItem>
+                  <SelectItem value={ALL_FILTER}>All Semesters</SelectItem>
                   {semesters.map((s) => (
                     <SelectItem key={s} value={s}>
                       Semester {s}
@@ -113,11 +114,11 @@ export function PaperCatalogue() {
                 </SelectContent>
               </Select>
               <Select value={subjectFilter} onValueChange={setSubjectFilter}>
-                <SelectTrigger className="h-12 text-base">
+                <SelectTrigger className="h-12 text-base shadow-sm">
                   <SelectValue placeholder="All Subjects" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">All Subjects</SelectItem>
+                  <SelectItem value={ALL_FILTER}>All Subjects</SelectItem>
                   {subjects.map((s) => (
                     <SelectItem key={s} value={s}>
                       {s}
@@ -125,46 +126,50 @@ export function PaperCatalogue() {
                   ))}
                 </SelectContent>
               </Select>
-              <Button
-                variant="secondary"
-                className="h-12 text-base font-semibold"
-                onClick={handleRefresh}
-              >
-                Refresh
-              </Button>
             </div>
-          </div>
-
-          <div className="mt-6 divide-y divide-border rounded-lg border">
-            {loading ? (
-              Array.from({ length: 5 }).map((_, i) => (
-                <div key={i} className="flex items-center gap-4 p-4">
-                  <Skeleton className="h-10 w-10 rounded-full" />
-                  <div className="flex-grow space-y-2">
-                    <Skeleton className="h-4 w-3/4" />
-                    <Skeleton className="h-4 w-1/2" />
-                  </div>
-                  <Skeleton className="h-10 w-24 rounded-md" />
-                </div>
-              ))
-            ) : error ? (
-              <div className="p-10 text-center text-destructive">{error}</div>
-            ) : filteredPapers.length > 0 ? (
-              filteredPapers.map((paper) => (
-                <PaperItem key={paper.key} paper={paper} />
-              ))
-            ) : (
-              <div className="p-10 text-center text-muted-foreground">
-                <h3 className="font-semibold text-lg text-foreground">
-                  No Matching Papers Found
-                </h3>
-                <p>Try adjusting your filter criteria.</p>
-              </div>
-            )}
           </div>
         </CardContent>
       </Card>
-      <FabRefresh onRefresh={handleRefresh} />
+      
+      <div className="mt-6 space-y-4">
+        {loading ? (
+          Array.from({ length: 5 }).map((_, i) => (
+            <Card key={i} className="p-4">
+              <div className="flex items-center gap-4">
+                <Skeleton className="h-12 w-12 rounded-lg" />
+                <div className="flex-grow space-y-2">
+                  <Skeleton className="h-4 w-3/4" />
+                  <Skeleton className="h-4 w-1/2" />
+                </div>
+                <Skeleton className="h-10 w-28 rounded-full" />
+              </div>
+            </Card>
+          ))
+        ) : error ? (
+          <Card className="p-10 text-center text-destructive">
+            <h3 className="font-semibold text-lg text-foreground">Error</h3>
+            <p>{error}</p>
+          </Card>
+        ) : filteredPapers.length > 0 ? (
+          filteredPapers.map((paper) => (
+            <PaperItem key={paper.key} paper={paper} />
+          ))
+        ) : (
+          <Card>
+            <CardContent className="p-10 text-center">
+              <h3 className="font-semibold text-lg text-foreground">
+                No Matching Papers Found
+              </h3>
+              <p className="text-muted-foreground">Try adjusting your filter criteria or view all.</p>
+              <Button onClick={handleRefresh} className="mt-4">Reset & View All</Button>
+            </CardContent>
+          </Card>
+        )}
+      </div>
+
+      {(semesterFilter !== ALL_FILTER || subjectFilter !== ALL_FILTER) && filteredPapers.length > 0 && (
+          <FabRefresh onRefresh={handleRefresh} />
+      )}
     </>
   );
 }

@@ -10,7 +10,8 @@ export function DownloadButton({ link }: { link: string }) {
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
 
-  const handleDownload = async () => {
+  const handleDownload = async (e: React.MouseEvent) => {
+    e.stopPropagation(); // Prevent card click event
     if (!link) {
       toast({
         variant: 'destructive',
@@ -46,16 +47,17 @@ export function DownloadButton({ link }: { link: string }) {
     <Button
       onClick={handleDownload}
       disabled={loading}
-      variant="ghost"
-      className="h-10 w-10 rounded-full p-0 transition-all hover:bg-accent/50 sm:w-auto sm:px-4 sm:py-2 sm:hover:scale-105"
+      className="h-10 w-28 rounded-full shadow-sm transition-all hover:shadow-md hover:scale-105 bg-primary/90 hover:bg-primary text-primary-foreground"
       aria-label="Download paper"
     >
       {loading ? (
         <Loader2 className="h-4 w-4 animate-spin" />
       ) : (
-        <Download className="h-4 w-4" />
+        <>
+          <Download className="h-4 w-4" />
+          <span>Download</span>
+        </>
       )}
-      <span className="hidden sm:ml-2 sm:inline-block">Download</span>
     </Button>
   );
 }
