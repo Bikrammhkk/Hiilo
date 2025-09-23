@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
@@ -5,7 +6,6 @@ import { getDatabase, ref, onValue } from 'firebase/database';
 import type { Paper } from '@/types';
 import { database } from '@/lib/firebase';
 import { Card, CardContent } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
 import {
   Select,
   SelectContent,
@@ -17,13 +17,12 @@ import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
 import { PaperItem } from './paper-item';
 import { FabRefresh } from './fab-refresh';
-import { Loader2, Search } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
 
 export function PaperCatalogue() {
   const [papers, setPapers] = useState<Paper[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [searchTerm, setSearchTerm] = useState('');
   const [semesterFilter, setSemesterFilter] = useState('all');
   const [subjectFilter, setSubjectFilter] = useState('all');
 
@@ -79,20 +78,14 @@ export function PaperCatalogue() {
 
   const filteredPapers = useMemo(() => {
     return papers.filter((p) => {
-      const search = searchTerm.toLowerCase();
       return (
         (semesterFilter === 'all' || String(p.semester) === semesterFilter) &&
-        (subjectFilter === 'all' || p.subject === subjectFilter) &&
-        (searchTerm === '' ||
-          p.title?.toLowerCase().includes(search) ||
-          p.subject?.toLowerCase().includes(search) ||
-          String(p.semester)?.toLowerCase().includes(search))
+        (subjectFilter === 'all' || p.subject === subjectFilter)
       );
     });
-  }, [papers, searchTerm, semesterFilter, subjectFilter]);
+  }, [papers, semesterFilter, subjectFilter]);
 
   const handleRefresh = useCallback(() => {
-    setSearchTerm('');
     setSemesterFilter('all');
     setSubjectFilter('all');
     if (papers.length === 0) {
@@ -105,16 +98,6 @@ export function PaperCatalogue() {
       <Card>
         <CardContent className="p-4 sm:p-6">
           <div className="space-y-4">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-              <Input
-                type="search"
-                placeholder="Search by title, subject, or semester"
-                className="pl-10 h-12 text-base"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-            </div>
             <div className="flex flex-col gap-4 sm:flex-row">
               <Select value={semesterFilter} onValueChange={setSemesterFilter}>
                 <SelectTrigger className="h-12 text-base">
@@ -175,7 +158,7 @@ export function PaperCatalogue() {
                 <h3 className="font-semibold text-lg text-foreground">
                   No Matching Papers Found
                 </h3>
-                <p>Try adjusting your search or filter criteria.</p>
+                <p>Try adjusting your filter criteria.</p>
               </div>
             )}
           </div>
