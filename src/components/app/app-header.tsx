@@ -1,7 +1,7 @@
-import { SocialLinksMenu } from './social-links-menu';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Search } from 'lucide-react';
 import { Button } from '../ui/button';
+import { SidebarTrigger } from '../ui/sidebar';
 
 export function AppHeader() {
   return (
@@ -17,9 +17,11 @@ export function AppHeader() {
             <p className="text-sm text-muted-foreground">Student</p>
           </div>
         </div>
-        <div className='flex items-center gap-2'>
-            <Button variant="ghost" size="icon"><Search className="h-5 w-5" /></Button>
-            <SocialLinksMenu />
+        <div className="flex items-center gap-2">
+          <Button variant="ghost" size="icon">
+            <Search className="h-5 w-5" />
+          </Button>
+          <SidebarTrigger />
         </div>
       </div>
     </header>

@@ -19,9 +19,9 @@ export default function Home() {
           </CardHeader>
           <CardContent>
             <p className="text-sm text-muted-foreground">
-              Click the Download button on any paper. If it's a
-              Google Drive link, it will be converted to a direct-download link
-              for a better experience.
+              Click the Download button on any paper. If it's a Google Drive
+              link, it will be converted to a direct-download link for a better
+              experience.
             </p>
           </CardContent>
         </Card>
