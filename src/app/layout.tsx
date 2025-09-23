@@ -11,6 +11,7 @@ import {
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
+  SidebarTitle,
 } from '@/components/ui/sidebar';
 import { AppHeader } from '@/components/app/app-header';
 import Link from 'next/link';
@@ -45,6 +46,7 @@ export default function RootLayout({
         <SidebarProvider>
           <Sidebar side="left">
             <SidebarHeader>
+              <SidebarTitle className="sr-only">Menu</SidebarTitle>
               <h2 className="text-lg font-semibold">Contact Me</h2>
             </SidebarHeader>
             <SidebarContent>

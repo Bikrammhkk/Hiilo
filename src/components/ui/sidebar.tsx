@@ -198,7 +198,7 @@ const Sidebar = React.forwardRef<
           <SheetContent
             data-sidebar="sidebar"
             data-mobile="true"
-            className="w-[--sidebar-width] bg-sidebar p-0 text-sidebar-foreground [&>button]:hidden"
+            className="w-[--sidebar-width] bg-sidebar p-0 text-sidebar-foreground"
             style={
               {
                 "--sidebar-width": SIDEBAR_WIDTH_MOBILE,
@@ -206,7 +206,6 @@ const Sidebar = React.forwardRef<
             }
             side={side}
           >
-            <SheetTitle className="sr-only">Menu</SheetTitle>
             <div className="flex h-full w-full flex-col">{children}</div>
           </SheetContent>
         </Sheet>
@@ -365,6 +364,33 @@ const SidebarHeader = React.forwardRef<
   )
 })
 SidebarHeader.displayName = "SidebarHeader"
+
+const SidebarTitle = React.forwardRef<
+  React.ElementRef<typeof SheetTitle>,
+  React.ComponentProps<typeof SheetTitle>
+>(({ className, ...props }, ref) => {
+  const { isMobile } = useSidebar()
+  if (isMobile) {
+    return (
+      <SheetTitle
+        ref={ref}
+        data-sidebar="title"
+        className={cn(className)}
+        {...props}
+      />
+    )
+  }
+  return (
+    <div
+      ref={ref as React.Ref<HTMLDivElement>}
+      data-sidebar="title"
+      className={cn("p-2", className)}
+      {...props}
+    />
+  )
+})
+SidebarTitle.displayName = "SidebarTitle"
+
 
 const SidebarFooter = React.forwardRef<
   HTMLDivElement,
@@ -761,4 +787,5 @@ export {
   SidebarSeparator,
   SidebarTrigger,
   useSidebar,
+  SidebarTitle
 }
