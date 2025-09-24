@@ -1,4 +1,3 @@
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Mail, MoreVertical } from 'lucide-react';
 import { Button } from '../ui/button';
 import { SidebarTrigger } from '../ui/sidebar';
@@ -19,14 +18,7 @@ export function AppHeader() {
       <div className="container mx-auto flex h-20 items-center justify-between px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-4">
           <SidebarTrigger />
-          <Avatar className="h-10 w-10">
-            <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-            <AvatarFallback>BD</AvatarFallback>
-          </Avatar>
-          <div>
-            <p className="font-semibold text-foreground">Bikram Das</p>
-            <p className="text-sm text-muted-foreground">Student</p>
-          </div>
+          <h1 className="text-xl font-bold">FYUGP Syllabus</h1>
         </div>
         <div className="flex items-center gap-2">
           <DropdownMenu>
