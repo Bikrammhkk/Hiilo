@@ -1,4 +1,5 @@
 import { AppFooter } from '@/components/app/app-footer';
+import { Notice } from '@/components/app/notice';
 import { PaperCatalogue } from '@/components/app/paper-catalogue';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { FileText } from 'lucide-react';
@@ -7,6 +8,7 @@ export default function Home() {
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <main className="container mx-auto flex-grow px-4 py-8 sm:px-6 lg:px-8">
+        <Notice />
         <PaperCatalogue />
         <Card className="mt-8 border-dashed bg-transparent shadow-none">
           <CardHeader>
