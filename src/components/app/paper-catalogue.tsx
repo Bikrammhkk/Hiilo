@@ -64,27 +64,41 @@ export function PaperCatalogue() {
     fetchPapers();
   }, [fetchPapers]);
 
-  const { semesters, subjects } = useMemo(() => {
+  const semesters = useMemo(() => {
     const semesterSet = new Set<string>();
-    const subjectSet = new Set<string>();
     papers.forEach((p) => {
       if (p.semester) semesterSet.add(String(p.semester));
-      if (p.subject) subjectSet.add(p.subject);
     });
-    return {
-      semesters: Array.from(semesterSet).sort((a, b) => Number(a) - Number(b)),
-      subjects: Array.from(subjectSet).sort(),
-    };
+    return Array.from(semesterSet).sort((a, b) => Number(a) - Number(b));
   }, [papers]);
+
+  const subjects = useMemo(() => {
+    const subjectSet = new Set<string>();
+    papers
+      .filter(
+        (p) =>
+          semesterFilter === ALL_FILTER || String(p.semester) === semesterFilter
+      )
+      .forEach((p) => {
+        if (p.subject) subjectSet.add(p.subject);
+      });
+    return Array.from(subjectSet).sort();
+  }, [papers, semesterFilter]);
 
   const filteredPapers = useMemo(() => {
     return papers.filter((p) => {
-      return (
-        (semesterFilter === ALL_FILTER || String(p.semester) === semesterFilter) &&
-        (subjectFilter === ALL_FILTER || p.subject === subjectFilter)
-      );
+      const semesterMatch =
+        semesterFilter === ALL_FILTER || String(p.semester) === semesterFilter;
+      const subjectMatch =
+        subjectFilter === ALL_FILTER || p.subject === subjectFilter;
+      return semesterMatch && subjectMatch;
     });
   }, [papers, semesterFilter, subjectFilter]);
+
+  const handleSemesterChange = (value: string) => {
+    setSemesterFilter(value);
+    setSubjectFilter(ALL_FILTER);
+  };
 
   const handleRefresh = useCallback(() => {
     setSemesterFilter(ALL_FILTER);
@@ -100,7 +114,7 @@ export function PaperCatalogue() {
         <CardContent className="p-4 sm:p-6">
           <div className="space-y-4">
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <Select value={semesterFilter} onValueChange={setSemesterFilter}>
+              <Select value={semesterFilter} onValueChange={handleSemesterChange}>
                 <SelectTrigger className="h-12 text-base shadow-sm bg-accent text-accent-foreground">
                   <SelectValue placeholder="All Semesters" />
                 </SelectTrigger>
