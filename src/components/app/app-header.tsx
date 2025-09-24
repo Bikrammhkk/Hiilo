@@ -6,7 +6,9 @@ export function AppHeader() {
       <div className="container mx-auto flex h-20 items-center justify-between px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-4">
           <SidebarTrigger />
-          <h1 className="text-xl font-bold">FYUGP Syllabus</h1>
+          <h1 className="text-xl font-bold">
+            SYLLABUS :: ARTS (ASSAM UNIVERSITY)
+          </h1>
         </div>
         <div className="flex items-center gap-2">
           {/* 3-dot menu removed as per request */}
