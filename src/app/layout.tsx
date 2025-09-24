@@ -17,6 +17,7 @@ import { AppHeader } from '@/components/app/app-header';
 import Link from 'next/link';
 import { InstagramIcon, WhatsAppIcon } from '@/components/app/icons';
 import { Separator } from '@/components/ui/separator';
+import { LogIn } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Syllabus',
@@ -78,6 +79,21 @@ export default function RootLayout({
                     >
                       <InstagramIcon className="h-5 w-5" />
                       <span>Instagram</span>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+                <SidebarMenuItem>
+                  <SidebarMenuButton
+                    asChild
+                    className="flex cursor-pointer items-center gap-3"
+                  >
+                    <Link
+                      href="https://admin-1rtw.vercel.app/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <LogIn className="h-5 w-5" />
+                      <span>Admin Login</span>
                     </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
