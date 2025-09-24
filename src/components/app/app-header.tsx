@@ -1,16 +1,4 @@
-import { Mail, MoreVertical } from 'lucide-react';
-import { Button } from '../ui/button';
 import { SidebarTrigger } from '../ui/sidebar';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import Link from 'next/link';
-import { InstagramIcon, WhatsAppIcon } from './icons';
 
 export function AppHeader() {
   return (
@@ -21,48 +9,7 @@ export function AppHeader() {
           <h1 className="text-xl font-bold">FYUGP Syllabus</h1>
         </div>
         <div className="flex items-center gap-2">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon">
-                <MoreVertical className="h-5 w-5" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-56">
-              <DropdownMenuLabel>Bikram Das</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem asChild>
-                <Link
-                  href="https://wa.me/919954487795"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="cursor-pointer"
-                >
-                  <WhatsAppIcon className="h-4 w-4" />
-                  <span>WhatsApp</span>
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link
-                  href="https://www.instagram.com/bikram.m1"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="cursor-pointer"
-                >
-                  <InstagramIcon className="h-4 w-4" />
-                  <span>Instagram</span>
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link
-                  href="mailto:shomdas165@gmail.com"
-                  className="cursor-pointer"
-                >
-                  <Mail className="h-4 w-4" />
-                  <span>Email</span>
-                </Link>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          {/* 3-dot menu removed as per request */}
         </div>
       </div>
     </header>
