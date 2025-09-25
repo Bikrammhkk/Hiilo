@@ -1,4 +1,3 @@
-
 'use client';
 
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
@@ -116,12 +115,12 @@ export function PaperCatalogue() {
 
   return (
     <>
-      <Card className="overflow-hidden shadow-sm rounded-xl bg-card">
+      <Card className="overflow-hidden shadow-lg rounded-2xl bg-card border-0">
         <CardContent className="p-4 sm:p-6">
           <div className="space-y-4">
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <Select value={semesterFilter} onValueChange={handleSemesterChange}>
-                <SelectTrigger className="h-12 text-base shadow-sm rounded-lg focus:ring-ring">
+                <SelectTrigger className="h-12 text-base shadow-sm rounded-xl focus:ring-ring border-2 border-border">
                   <SelectValue placeholder="All Semesters" />
                 </SelectTrigger>
                 <SelectContent>
@@ -134,7 +133,7 @@ export function PaperCatalogue() {
                 </SelectContent>
               </Select>
               <Select value={subjectFilter} onValueChange={setSubjectFilter}>
-                <SelectTrigger className="h-12 text-base shadow-sm rounded-lg focus:ring-ring">
+                <SelectTrigger className="h-12 text-base shadow-sm rounded-xl focus:ring-ring border-2 border-border">
                   <SelectValue placeholder="All Subjects" />
                 </SelectTrigger>
                 <SelectContent>
@@ -154,19 +153,19 @@ export function PaperCatalogue() {
       <div className="mt-8 grid gap-4">
         {loading ? (
           Array.from({ length: 5 }).map((_, i) => (
-            <Card key={i} className="p-4 rounded-xl shadow-md">
+            <Card key={i} className="p-4 rounded-2xl shadow-lg border-0 bg-card">
               <div className="flex items-center gap-4">
-                <Skeleton className="h-12 w-12 rounded-lg" />
+                <Skeleton className="h-12 w-12 rounded-lg bg-muted-foreground/20" />
                 <div className="flex-grow space-y-2">
-                  <Skeleton className="h-4 w-3/4" />
-                  <Skeleton className="h-4 w-1/2" />
+                  <Skeleton className="h-4 w-3/4 bg-muted-foreground/20" />
+                  <Skeleton className="h-4 w-1/2 bg-muted-foreground/20" />
                 </div>
-                <Skeleton className="h-10 w-10 rounded-full" />
+                <Skeleton className="h-10 w-10 rounded-full bg-muted-foreground/20" />
               </div>
             </Card>
           ))
         ) : error ? (
-          <Card className="p-10 text-center text-destructive rounded-xl shadow-md">
+          <Card className="p-10 text-center text-destructive rounded-2xl shadow-lg border-0 bg-card">
             <h3 className="font-semibold text-lg text-foreground">Error</h3>
             <p>{error}</p>
           </Card>
@@ -175,13 +174,13 @@ export function PaperCatalogue() {
             <PaperItem key={paper.key} paper={paper} index={index} />
           ))
         ) : (
-          <Card className="mt-8">
-            <CardContent className="p-10 text-center rounded-xl shadow-md">
+          <Card className="mt-8 bg-card border-0">
+            <CardContent className="p-10 text-center rounded-2xl shadow-lg">
               <h3 className="font-semibold text-lg text-foreground">
                 No Matching Papers Found
               </h3>
               <p className="text-muted-foreground">Try adjusting your filter criteria or view all.</p>
-              <Button onClick={handleRefresh} className="mt-4 rounded-lg">Reset & View All</Button>
+              <Button onClick={handleRefresh} className="mt-4 rounded-xl">Reset & View All</Button>
             </CardContent>
           </Card>
         )}

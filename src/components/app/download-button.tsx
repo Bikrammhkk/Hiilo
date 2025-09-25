@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Download, Loader2, ArrowRight } from 'lucide-react';
+import { Download, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { getDirectLink } from '@/app/actions';
 import { useToast } from '@/hooks/use-toast';
