@@ -2,13 +2,13 @@ import { initializeApp, getApps, type FirebaseApp } from 'firebase/app';
 import { getDatabase } from 'firebase/database';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyD0uA1p7ryN5iyY7tZoJCGceom4vIDByLE",
-  authDomain: "syllabus3-d2f8c.firebaseapp.com",
-  databaseURL: "https://syllabus3-d2f8c-default-rtdb.firebaseio.com",
-  projectId: "syllabus3-d2f8c",
-  storageBucket: "syllabus3-d2f8c.firebasestorage.app",
-  messagingSenderId: "507725006951",
-  appId: "1:507725006951:web:3ca1d354fc0a9af5a3acc2"
+  apiKey: "AIzaSyAikfOiv-v127CXBY6pr7E22v9D9nnJhbc",
+  authDomain: "syllabus4-95fc2.firebaseapp.com",
+  databaseURL: "https://syllabus4-95fc2-default-rtdb.firebaseio.com",
+  projectId: "syllabus4-95fc2",
+  storageBucket: "syllabus4-95fc2.firebasestorage.app",
+  messagingSenderId: "413981967107",
+  appId: "1:413981967107:web:ebe531ad21e78c8ae11f36"
 };
 
 let app: FirebaseApp;
