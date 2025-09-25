@@ -85,6 +85,12 @@ export function PaperCatalogue() {
     return Array.from(subjectSet).sort();
   }, [papers, semesterFilter]);
 
+  useEffect(() => {
+    if (!subjects.includes(subjectFilter)) {
+      setSubjectFilter(ALL_FILTER);
+    }
+  }, [subjects, subjectFilter]);
+
   const filteredPapers = useMemo(() => {
     return papers.filter((p) => {
       const semesterMatch =
