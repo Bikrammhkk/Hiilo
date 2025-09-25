@@ -7,7 +7,7 @@ export function AppHeader() {
         <div className="flex items-center gap-4">
           <SidebarTrigger />
           <h1 className="text-xl font-bold">
-            SYLLABUS :: ARTS (ASSAM UNIVERSITY)
+            SYLLABUS SCIENCE (ASSAM UNIVERSITY)
           </h1>
         </div>
         <div className="flex items-center gap-2">
