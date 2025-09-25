@@ -20,8 +20,8 @@ import { Separator } from '@/components/ui/separator';
 import { LogIn } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'SYLLABUS SCIENCE (ASSAM UNIVERSITY)',
-  description: 'Syllabus for Science at Assam University',
+  title: 'SYLLABUS :: COMMERCE (ASSAM UNIVERSITY)',
+  description: 'Syllabus for Commerce at Assam University',
 };
 
 export default function RootLayout({
