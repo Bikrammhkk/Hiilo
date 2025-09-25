@@ -47,13 +47,13 @@ export function DownloadButton({ link }: { link: string }) {
     <Button
       onClick={handleDownload}
       disabled={loading}
-      className="h-10 w-10 p-0 rounded-full shadow-sm transition-all hover:shadow-md hover:scale-105 bg-white/50 text-foreground hover:bg-white"
+      className="h-10 w-10 p-0 rounded-full shadow-sm transition-all hover:shadow-md hover:scale-105 bg-primary text-primary-foreground hover:bg-primary/90"
       aria-label="Download paper"
     >
       {loading ? (
         <Loader2 className="h-4 w-4 animate-spin" />
       ) : (
-        <ArrowRight className="h-4 w-4" />
+        <Download className="h-4 w-4" />
       )}
     </Button>
   );
