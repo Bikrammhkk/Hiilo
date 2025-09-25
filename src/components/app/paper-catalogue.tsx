@@ -1,4 +1,3 @@
-
 'use client';
 
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
@@ -116,12 +115,12 @@ export function PaperCatalogue() {
 
   return (
     <>
-      <Card className="overflow-hidden shadow-lg border-2 border-black rounded-2xl bg-card">
+      <Card className="overflow-hidden shadow-sm border-border bg-card">
         <CardContent className="p-4 sm:p-6">
           <div className="space-y-4">
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <Select value={semesterFilter} onValueChange={handleSemesterChange}>
-                <SelectTrigger className="h-12 text-base shadow-sm rounded-xl border-2 border-black focus:ring-ring">
+                <SelectTrigger className="h-12 text-base shadow-sm rounded-xl border focus:ring-ring">
                   <SelectValue placeholder="All Semesters" />
                 </SelectTrigger>
                 <SelectContent>
@@ -134,7 +133,7 @@ export function PaperCatalogue() {
                 </SelectContent>
               </Select>
               <Select value={subjectFilter} onValueChange={setSubjectFilter}>
-                <SelectTrigger className="h-12 text-base shadow-sm rounded-xl border-2 border-black focus:ring-ring">
+                <SelectTrigger className="h-12 text-base shadow-sm rounded-xl border focus:ring-ring">
                   <SelectValue placeholder="All Subjects" />
                 </SelectTrigger>
                 <SelectContent>
@@ -154,7 +153,7 @@ export function PaperCatalogue() {
       <div className="mt-8 grid gap-4">
         {loading ? (
           Array.from({ length: 5 }).map((_, i) => (
-            <Card key={i} className="p-4 rounded-2xl shadow-lg border-2 border-black">
+            <Card key={i} className="p-4 rounded-xl shadow-sm border">
               <div className="flex items-center gap-4">
                 <Skeleton className="h-12 w-12 rounded-lg" />
                 <div className="flex-grow space-y-2">
@@ -166,7 +165,7 @@ export function PaperCatalogue() {
             </Card>
           ))
         ) : error ? (
-          <Card className="p-10 text-center text-destructive rounded-2xl shadow-lg border-2 border-black">
+          <Card className="p-10 text-center text-destructive rounded-xl shadow-sm border">
             <h3 className="font-semibold text-lg text-foreground">Error</h3>
             <p>{error}</p>
           </Card>
@@ -176,12 +175,12 @@ export function PaperCatalogue() {
           ))
         ) : (
           <Card className="mt-8">
-            <CardContent className="p-10 text-center rounded-2xl shadow-lg border-2 border-black">
+            <CardContent className="p-10 text-center rounded-xl shadow-sm border">
               <h3 className="font-semibold text-lg text-foreground">
                 No Matching Papers Found
               </h3>
               <p className="text-muted-foreground">Try adjusting your filter criteria or view all.</p>
-              <Button onClick={handleRefresh} className="mt-4 rounded-xl border-2 border-black">Reset & View All</Button>
+              <Button onClick={handleRefresh} className="mt-4 rounded-xl">Reset & View All</Button>
             </CardContent>
           </Card>
         )}

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Download, Loader2, ArrowRight } from 'lucide-react';
+import { Download, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { getDirectLink } from '@/app/actions';
 import { useToast } from '@/hooks/use-toast';
@@ -47,13 +47,16 @@ export function DownloadButton({ link }: { link: string }) {
     <Button
       onClick={handleDownload}
       disabled={loading}
-      className="h-10 w-10 p-0 rounded-full shadow-sm transition-all hover:shadow-md hover:scale-105 bg-primary text-primary-foreground hover:bg-primary/90"
+      className="h-10 w-28 p-2 rounded-lg shadow-sm transition-all hover:shadow-md hover:scale-105 bg-primary text-primary-foreground hover:bg-primary/90"
       aria-label="Download paper"
     >
       {loading ? (
         <Loader2 className="h-4 w-4 animate-spin" />
       ) : (
-        <Download className="h-4 w-4" />
+        <>
+          <Download className="h-4 w-4" />
+          <span>Download</span>
+        </>
       )}
     </Button>
   );
