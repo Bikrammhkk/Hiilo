@@ -121,7 +121,7 @@ export function PaperCatalogue() {
           <div className="space-y-4">
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <Select value={semesterFilter} onValueChange={handleSemesterChange}>
-                <SelectTrigger className="h-12 text-base shadow-sm bg-accent text-accent-foreground">
+                <SelectTrigger className="h-12 text-base shadow-sm">
                   <SelectValue placeholder="All Semesters" />
                 </SelectTrigger>
                 <SelectContent>
@@ -134,7 +134,7 @@ export function PaperCatalogue() {
                 </SelectContent>
               </Select>
               <Select value={subjectFilter} onValueChange={setSubjectFilter}>
-                <SelectTrigger className="h-12 text-base shadow-sm bg-accent text-accent-foreground">
+                <SelectTrigger className="h-12 text-base shadow-sm">
                   <SelectValue placeholder="All Subjects" />
                 </SelectTrigger>
                 <SelectContent>

@@ -3,7 +3,7 @@ import { Info } from 'lucide-react';
 
 export function Notice() {
   return (
-    <Alert className="mb-6 border-primary/50 text-primary-foreground dark:border-primary [&>svg]:text-primary">
+    <Alert className="mb-6 border-primary/50 bg-accent text-accent-foreground [&>svg]:text-primary">
       <Info className="h-4 w-4" />
       <AlertTitle className="font-bold text-primary">Notice</AlertTitle>
       <AlertDescription className="text-foreground">
