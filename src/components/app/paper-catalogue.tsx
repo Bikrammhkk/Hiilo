@@ -86,7 +86,7 @@ export function PaperCatalogue() {
   }, [papers, semesterFilter]);
 
   useEffect(() => {
-    if (!subjects.includes(subjectFilter)) {
+    if (!subjects.includes(subjectFilter) && subjectFilter !== ALL_FILTER) {
       setSubjectFilter(ALL_FILTER);
     }
   }, [subjects, subjectFilter]);
@@ -116,12 +116,12 @@ export function PaperCatalogue() {
 
   return (
     <>
-      <Card className="overflow-hidden shadow-lg">
+      <Card className="overflow-hidden shadow-lg border-none rounded-2xl bg-card">
         <CardContent className="p-4 sm:p-6">
           <div className="space-y-4">
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <Select value={semesterFilter} onValueChange={handleSemesterChange}>
-                <SelectTrigger className="h-12 text-base shadow-sm">
+                <SelectTrigger className="h-12 text-base shadow-sm rounded-xl">
                   <SelectValue placeholder="All Semesters" />
                 </SelectTrigger>
                 <SelectContent>
@@ -134,7 +134,7 @@ export function PaperCatalogue() {
                 </SelectContent>
               </Select>
               <Select value={subjectFilter} onValueChange={setSubjectFilter}>
-                <SelectTrigger className="h-12 text-base shadow-sm">
+                <SelectTrigger className="h-12 text-base shadow-sm rounded-xl">
                   <SelectValue placeholder="All Subjects" />
                 </SelectTrigger>
                 <SelectContent>
@@ -151,37 +151,37 @@ export function PaperCatalogue() {
         </CardContent>
       </Card>
       
-      <div className="mt-6 space-y-4">
+      <div className="mt-8 space-y-[-2.5rem]">
         {loading ? (
           Array.from({ length: 5 }).map((_, i) => (
-            <Card key={i} className="p-4">
+            <Card key={i} className="p-4 rounded-2xl shadow-lg border-none">
               <div className="flex items-center gap-4">
                 <Skeleton className="h-12 w-12 rounded-lg" />
                 <div className="flex-grow space-y-2">
                   <Skeleton className="h-4 w-3/4" />
                   <Skeleton className="h-4 w-1/2" />
                 </div>
-                <Skeleton className="h-10 w-28 rounded-full" />
+                <Skeleton className="h-10 w-10 rounded-full" />
               </div>
             </Card>
           ))
         ) : error ? (
-          <Card className="p-10 text-center text-destructive">
+          <Card className="p-10 text-center text-destructive rounded-2xl shadow-lg border-none">
             <h3 className="font-semibold text-lg text-foreground">Error</h3>
             <p>{error}</p>
           </Card>
         ) : filteredPapers.length > 0 ? (
-          filteredPapers.map((paper) => (
-            <PaperItem key={paper.key} paper={paper} />
+          filteredPapers.map((paper, index) => (
+            <PaperItem key={paper.key} paper={paper} index={index} />
           ))
         ) : (
-          <Card>
-            <CardContent className="p-10 text-center">
+          <Card className="mt-8">
+            <CardContent className="p-10 text-center rounded-2xl shadow-lg border-none">
               <h3 className="font-semibold text-lg text-foreground">
                 No Matching Papers Found
               </h3>
               <p className="text-muted-foreground">Try adjusting your filter criteria or view all.</p>
-              <Button onClick={handleRefresh} className="mt-4">Reset & View All</Button>
+              <Button onClick={handleRefresh} className="mt-4 rounded-xl">Reset & View All</Button>
             </CardContent>
           </Card>
         )}
