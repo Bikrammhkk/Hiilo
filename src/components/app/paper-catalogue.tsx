@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
@@ -115,7 +116,7 @@ export function PaperCatalogue() {
 
   return (
     <>
-      <Card className="overflow-hidden shadow-sm border-border rounded-xl bg-card">
+      <Card className="overflow-hidden shadow-lg border-border rounded-xl bg-card">
         <CardContent className="p-4 sm:p-6">
           <div className="space-y-4">
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -153,7 +154,7 @@ export function PaperCatalogue() {
       <div className="mt-8 grid gap-4">
         {loading ? (
           Array.from({ length: 5 }).map((_, i) => (
-            <Card key={i} className="p-4 rounded-xl shadow-sm border">
+            <Card key={i} className="p-4 rounded-xl shadow-lg border-border bg-card">
               <div className="flex items-center gap-4">
                 <Skeleton className="h-12 w-12 rounded-lg" />
                 <div className="flex-grow space-y-2">
@@ -165,7 +166,7 @@ export function PaperCatalogue() {
             </Card>
           ))
         ) : error ? (
-          <Card className="p-10 text-center text-destructive rounded-xl shadow-sm border">
+          <Card className="p-10 text-center text-destructive rounded-xl shadow-lg border-border bg-card">
             <h3 className="font-semibold text-lg text-foreground">Error</h3>
             <p>{error}</p>
           </Card>
@@ -175,7 +176,7 @@ export function PaperCatalogue() {
           ))
         ) : (
           <Card className="mt-8 bg-card">
-            <CardContent className="p-10 text-center rounded-xl shadow-sm border">
+            <CardContent className="p-10 text-center rounded-xl shadow-lg border-border">
               <h3 className="font-semibold text-lg text-foreground">
                 No Matching Papers Found
               </h3>
