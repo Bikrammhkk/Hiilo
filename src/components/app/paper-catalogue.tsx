@@ -115,12 +115,12 @@ export function PaperCatalogue() {
 
   return (
     <>
-      <Card className="overflow-hidden shadow-sm border-border bg-card">
+      <Card className="overflow-hidden shadow-sm border-border rounded-xl bg-card">
         <CardContent className="p-4 sm:p-6">
           <div className="space-y-4">
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <Select value={semesterFilter} onValueChange={handleSemesterChange}>
-                <SelectTrigger className="h-12 text-base shadow-sm rounded-xl border focus:ring-ring">
+                <SelectTrigger className="h-12 text-base shadow-sm rounded-lg border focus:ring-ring bg-background">
                   <SelectValue placeholder="All Semesters" />
                 </SelectTrigger>
                 <SelectContent>
@@ -133,7 +133,7 @@ export function PaperCatalogue() {
                 </SelectContent>
               </Select>
               <Select value={subjectFilter} onValueChange={setSubjectFilter}>
-                <SelectTrigger className="h-12 text-base shadow-sm rounded-xl border focus:ring-ring">
+                <SelectTrigger className="h-12 text-base shadow-sm rounded-lg border focus:ring-ring bg-background">
                   <SelectValue placeholder="All Subjects" />
                 </SelectTrigger>
                 <SelectContent>
@@ -174,13 +174,13 @@ export function PaperCatalogue() {
             <PaperItem key={paper.key} paper={paper} index={index} />
           ))
         ) : (
-          <Card className="mt-8">
+          <Card className="mt-8 bg-card">
             <CardContent className="p-10 text-center rounded-xl shadow-sm border">
               <h3 className="font-semibold text-lg text-foreground">
                 No Matching Papers Found
               </h3>
               <p className="text-muted-foreground">Try adjusting your filter criteria or view all.</p>
-              <Button onClick={handleRefresh} className="mt-4 rounded-xl">Reset & View All</Button>
+              <Button onClick={handleRefresh} className="mt-4 rounded-lg">Reset & View All</Button>
             </CardContent>
           </Card>
         )}

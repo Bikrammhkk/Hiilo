@@ -10,7 +10,7 @@ export default function Home() {
       <main className="container mx-auto flex-grow px-4 py-8 sm:px-6 lg:px-8">
         <Notice />
         <PaperCatalogue />
-        <Card className="mt-8 border-dashed border-border bg-transparent shadow-none">
+        <Card className="mt-8 border-dashed border-border bg-card shadow-sm rounded-xl">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-base font-semibold">
               <FileText className="h-5 w-5 text-primary" />
